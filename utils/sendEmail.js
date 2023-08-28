@@ -2,14 +2,15 @@ import nodemailer from 'nodemailer';
 import {
     senderEmail,
     senderPassword,
-    recipientEmail
+    recipientEmail,
+    supportMail
 } from '../config/config.js';
 import { getMixedString } from './getMixedString.js';
 
 const askDictionary = {
     mirror: {
         subject: 'Хочу получить ссылку на зеркало',
-        text: 'Где зеркало, Лебовски'
+        text: 'Добрый день! Пожалуйста отправьте ссылку на зеркало сайта'
     },
     ticket: {
         subject: 'Не получаю ответ на запрос ссылки',
@@ -23,8 +24,8 @@ export async function sendEmail(type) {
     let text = '';
     switch(type) {
         case 'ticket' :
-            subject = getMixedString (askDictionary.ticket.subject);
-            text = getMixedString (askDictionary.ticket.text);
+            subject = askDictionary.ticket.subject;
+            text = askDictionary.ticket.text;
             break;
         default:
             subject = getMixedString (askDictionary.mirror.subject);
@@ -44,7 +45,7 @@ export async function sendEmail(type) {
 
     const mailOptions = {
         from: senderEmail,
-        to: recipientEmail,
+        to: (type === 'mirror' ? recipientEmail : supportMail),
         subject: subject,
         text: text
     };

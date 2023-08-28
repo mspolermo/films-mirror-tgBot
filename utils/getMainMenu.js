@@ -2,13 +2,13 @@ export function getMainMenu() {
     return [
         [
             {
-                text: 'Открыть последний ссыль на зеркало',
+                text: 'Открыть последнюю ссылку на зеркало',
                 callback_data: 'checkLastReply'
             }
         ],
         [
             {
-                text: 'Обновить ссыль на зеркало',
+                text: 'Обновить ссылку на зеркало',
                 callback_data: 'sendReq'
             }
         ],

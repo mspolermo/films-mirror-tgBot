@@ -49,7 +49,7 @@ export function replyCheck (chatId) {
 
     imap.once('ready', () => {
         getLastEmailFromSender(imap, (emailText) => {
-            bot.sendMessage(chatId, `Последний ссыль: \n\n${emailText}`);
+            bot.sendMessage(chatId, `Последняя ссылка: \n\n${emailText}`);
         });
     });
 

@@ -4,7 +4,7 @@ import { sendEmail } from './utils/sendEmail.js';
 import { replyCheck } from './utils/replyCheck.js';
 
 const mainMenuData = {
-    caption: 'Салют, Макатель. Будем смотреть кинчик?',
+    caption: 'Telegram bot получения ссылки на зеркало KINOLAND.BIZ',
     reply_markup: {
         inline_keyboard: getMainMenu()
     }
@@ -12,7 +12,7 @@ const mainMenuData = {
 
 bot.on('message', (msg) => {
     const chatId = msg.chat.id;
-    bot.sendPhoto(chatId, './static/M.jpg', mainMenuData);
+    bot.sendPhoto(chatId, './static/logo.jpg', mainMenuData);
 });
 
 bot.on('callback_query', (query) => {
@@ -26,13 +26,13 @@ bot.on('callback_query', (query) => {
 
     if (query.data === 'sendReq') {
         sendEmail('mirror');
-        bot.sendMessage(chatId, 'Запрос отправил. Погоди пару минут и попробуй чекнуть последний ссыль');
-        setTimeout( () => bot.sendPhoto(chatId, './static/M.jpg', mainMenuData), 2000);
+        bot.sendMessage(chatId, 'Запрос отправлен. Проверьте последнюю ссылку через несколько минут');
+        setTimeout( () => bot.sendPhoto(chatId, './static/logo.jpg', mainMenuData), 2000);
     };
 
     if (query.data === 'createTicket') {
         sendEmail('ticket');
-        bot.sendMessage(chatId, 'Разработчикам отправлен репорт о проблемах с обновлением ссыля');
-        setTimeout( () => bot.sendPhoto(chatId, './static/M.jpg', mainMenuData), 2000);
+        bot.sendMessage(chatId, 'Разработчикам отправлен репорт о проблемах с обновлением ссылки');
+        setTimeout( () => bot.sendPhoto(chatId, './static/logo.jpg', mainMenuData), 2000);
     };
 });
